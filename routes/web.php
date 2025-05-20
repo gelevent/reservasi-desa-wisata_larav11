@@ -53,97 +53,105 @@ Route::controller(ReservasiController::class)->group(function () {
 });
 
 // Admin routes
-Route::prefix('admin')->name('admin.')->middleware('auth')->group(
-    function () {
-        Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-        Route::controller(BeritaController::class)->prefix('berita')->name('berita.')->group(function () {
-            Route::get('/', 'index')->name('index');
-            Route::get('/create', 'create')->name('create');
-            Route::post('/', 'store')->name('store');
-            Route::get('/{berita}', 'show')->name('show');
-            Route::get('/{berita}/edit', 'edit')->name('edit');
-            Route::put('/{berita}', 'update')->name('update');
-            Route::delete('/{berita}', 'destroy')->name('destroy');
-        });
+Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
-        Route::controller(KaryawanController::class)->prefix('karyawan')->name('karyawan.')->group(function () {
-            Route::get('/', 'index')->name('index');
-            Route::get('/create', 'create')->name('create');
-            Route::post('/', 'store')->name('store');
-            Route::get('/{karyawan}', 'show')->name('show');
-            Route::get('/{karyawan}/edit', 'edit')->name('edit');
-            Route::put('/{karyawan}', 'update')->name('update');
-            Route::delete('/{karyawan}', 'destroy')->name('destroy');
-        });
+    // Berita
+    Route::controller(BeritaController::class)->prefix('berita')->name('berita.')->group(function () {
+        Route::get('/', 'index')->name('index');
+        Route::get('/create', 'create')->name('create');
+        Route::post('/', 'store')->name('store');
+        Route::get('/{berita}', 'show')->name('show');
+        Route::get('/{berita}/edit', 'edit')->name('edit');
+        Route::put('/{berita}', 'update')->name('update');
+        Route::delete('/{berita}', 'destroy')->name('destroy');
+    });
 
-        Route::controller(KategoriBeritaController::class)->prefix('kategori-berita')->name('kategori-berita.')->group(function () {
-            Route::get('/', 'index')->name('index');
-            Route::get('/create', 'create')->name('create');
-            Route::post('/', 'store')->name('store');
-            Route::get('/{kategori_berita}', 'show')->name('show');
-            Route::get('/{kategori_berita}/edit', 'edit')->name('edit');
-            Route::put('/{kategori_berita}', 'update')->name('update');
-            Route::delete('/{kategori_berita}', 'destroy')->name('destroy');
-        });
+    // Karyawan
+    Route::controller(KaryawanController::class)->prefix('karyawan')->name('karyawan.')->group(function () {
+        Route::get('/', 'index')->name('index');
+        Route::get('/create', 'create')->name('create');
+        Route::post('/', 'store')->name('store');
+        Route::get('/{karyawan}', 'show')->name('show');
+        Route::get('/{karyawan}/edit', 'edit')->name('edit');
+        Route::put('/{karyawan}', 'update')->name('update');
+        Route::delete('/{karyawan}', 'destroy')->name('destroy');
+    });
 
-        Route::controller(KategoriWisataController::class)->prefix('kategori-wisata')->name('kategori-wisata.')->group(function () {
-            Route::get('/', 'index')->name('index');
-            Route::get('/create', 'create')->name('create');
-            Route::post('/', 'store')->name('store');
-            Route::get('/{kategori_wisata}', 'show')->name('show');
-            Route::get('/{kategori_wisata}/edit', 'edit')->name('edit');
-            Route::put('/{kategori_wisata}', 'update')->name('update');
-            Route::delete('/{kategori_wisata}', 'destroy')->name('destroy');
-        });
+    // Kategori Berita
+    Route::controller(KategoriBeritaController::class)->prefix('kategori-berita')->name('kategori-berita.')->group(function () {
+        Route::get('/', 'index')->name('index');
+        Route::get('/create', 'create')->name('create');
+        Route::post('/', 'store')->name('store');
+        Route::get('/{kategori_berita}', 'show')->name('show');
+        Route::get('/{kategori_berita}/edit', 'edit')->name('edit');
+        Route::put('/{kategori_berita}', 'update')->name('update');
+        Route::delete('/{kategori_berita}', 'destroy')->name('destroy');
+    });
 
-        Route::controller(ObyekWisataController::class)->prefix('obyek-wisata')->name('obyek-wisata.')->group(function () {
-            Route::get('/', 'index')->name('index');
-            Route::get('/create', 'create')->name('create');
-            Route::post('/', 'store')->name('store');
-            Route::get('/{obyek_wisata}', 'show')->name('show');
-            Route::get('/{obyek_wisata}/edit', 'edit')->name('edit');
-            Route::put('/{obyek_wisata}', 'update')->name('update');
-            Route::delete('/{obyek_wisata}', 'destroy')->name('destroy');
-        });
+    // Kategori Wisata
+    Route::controller(KategoriWisataController::class)->prefix('kategori-wisata')->name('kategori-wisata.')->group(function () {
+        Route::get('/', 'index')->name('index');
+        Route::get('/create', 'create')->name('create');
+        Route::post('/', 'store')->name('store');
+        Route::get('/{kategori_wisata}', 'show')->name('show');
+        Route::get('/{kategori_wisata}/edit', 'edit')->name('edit');
+        Route::put('/{kategori_wisata}', 'update')->name('update');
+        Route::delete('/{kategori_wisata}', 'destroy')->name('destroy');
+    });
 
-        Route::controller(PaketWisataController::class)->prefix('paket-wisata')->name('paket-wisata.')->group(function () {
-            Route::get('/', 'index')->name('index');
-            Route::get('/create', 'create')->name('create');
-            Route::post('/', 'store')->name('store');
-            Route::get('/{paket_wisata}', 'show')->name('show');
-            Route::get('/{paket_wisata}/edit', 'edit')->name('edit');
-            Route::put('/{paket_wisata}', 'update')->name('update');
-            Route::delete('/{paket_wisata}', 'destroy')->name('destroy');
-        });
+    // Obyek Wisata
+    Route::controller(ObyekWisataController::class)->prefix('obyek-wisata')->name('obyek-wisata.')->group(function () {
+        Route::get('/', 'index')->name('index');
+        Route::get('/create', 'create')->name('create');
+        Route::post('/', 'store')->name('store');
+        Route::get('/{obyek_wisata}', 'show')->name('show');
+        Route::get('/{obyek_wisata}/edit', 'edit')->name('edit');
+        Route::put('/{obyek_wisata}', 'update')->name('update');
+        Route::delete('/{obyek_wisata}', 'destroy')->name('destroy');
+    });
 
-        Route::controller(PelangganController::class)->prefix('pelanggan')->name('pelanggan.')->group(function () {
-            Route::get('/', 'index')->name('index');
-            Route::get('/create', 'create')->name('create');
-            Route::post('/', 'store')->name('store');
-            Route::get('/{pelanggan}', 'show')->name('show');
-            Route::get('/{pelanggan}/edit', 'edit')->name('edit');
-            Route::put('/{pelanggan}', 'update')->name('update');
-            Route::delete('/{pelanggan}', 'destroy')->name('destroy');
-        });
+    // Paket Wisata
+    Route::controller(PaketWisataController::class)->prefix('paket-wisata')->name('paket-wisata.')->group(function () {
+        Route::get('/', 'index')->name('index');
+        Route::get('/create', 'create')->name('create');
+        Route::post('/', 'store')->name('store');
+        Route::get('/{paket_wisata}', 'show')->name('show');
+        Route::get('/{paket_wisata}/edit', 'edit')->name('edit');
+        Route::put('/{paket_wisata}', 'update')->name('update');
+        Route::delete('/{paket_wisata}', 'destroy')->name('destroy');
+    });
 
-        Route::controller(PenginapanController::class)->prefix('penginapan')->name('penginapan.')->group(function () {
-            Route::get('/', 'index')->name('index');
-            Route::get('/create', 'create')->name('create');
-            Route::post('/', 'store')->name('store');
-            Route::get('/{penginapan}', 'show')->name('show');
-            Route::get('/{penginapan}/edit', 'edit')->name('edit');
-            Route::put('/{penginapan}', 'update')->name('update');
-            Route::delete('/{penginapan}', 'destroy')->name('destroy');
-        });
+    // Pelanggan
+    Route::controller(PelangganController::class)->prefix('pelanggan')->name('pelanggan.')->group(function () {
+        Route::get('/', 'index')->name('index');
+        Route::get('/create', 'create')->name('create');
+        Route::post('/', 'store')->name('store');
+        Route::get('/{pelanggan}', 'show')->name('show');
+        Route::get('/{pelanggan}/edit', 'edit')->name('edit');
+        Route::put('/{pelanggan}', 'update')->name('update');
+        Route::delete('/{pelanggan}', 'destroy')->name('destroy');
+    });
 
-        Route::controller(ReservasiController::class)->prefix('reservasi')->name('reservasi.')->group(function () {
-            Route::get('/', 'index')->name('index');
-            Route::get('/create', 'create')->name('create');
-            Route::post('/', 'store')->name('store');
-            Route::get('/{reservasi}', 'show')->name('show');
-            Route::get('/{reservasi}/edit', 'edit')->name('edit');
-            Route::put('/{reservasi}', 'update')->name('update');
-            Route::delete('/{reservasi}', 'destroy')->name('destroy');
-        });
-    }
-);
+    // Penginapan
+    Route::controller(PenginapanController::class)->prefix('penginapan')->name('penginapan.')->group(function () {
+        Route::get('/', 'index')->name('index');
+        Route::get('/create', 'create')->name('create');
+        Route::post('/', 'store')->name('store');
+        Route::get('/{penginapan}', 'show')->name('show');
+        Route::get('/{penginapan}/edit', 'edit')->name('edit');
+        Route::put('/{penginapan}', 'update')->name('update');
+        Route::delete('/{penginapan}', 'destroy')->name('destroy');
+    });
+
+    // Reservasi Admin
+    Route::controller(ReservasiController::class)->prefix('reservasi')->name('reservasi.')->group(function () {
+        Route::get('/', 'index')->name('index');
+        Route::get('/create', 'create')->name('create');
+        Route::post('/', 'store')->name('store');
+        Route::get('/{reservasi}', 'show')->name('show');
+        Route::get('/{reservasi}/edit', 'edit')->name('edit');
+        Route::put('/{reservasi}', 'update')->name('update');
+        Route::delete('/{reservasi}', 'destroy')->name('destroy');
+    });
+});
